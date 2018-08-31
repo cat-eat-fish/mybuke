@@ -37,15 +37,13 @@ export default {
     }
   },
   created(){
-    var id=this.$route.query.id;
-    this.$axios.get("/api/article/",{'id':id})
+    this.$axios.get(`/api/article/ ${this.$route.params.id} `,)
         .then(res=>{
           (res.data).forEach(element => {
               element.desc=element.content.slice(0,80)+'...';
               element.time=this.$store.state.formatDate(element.time);
           });
           this.mydata=res.data[0];
-          console.log(this.mydata)
       })
   }
 }

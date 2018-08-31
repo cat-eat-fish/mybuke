@@ -49,7 +49,7 @@ export default new Router({
     },
     // 文章
     {
-      path: '/article',
+      path: '/article/:id',
       name: 'myarticle',
       component: MyArticle
       

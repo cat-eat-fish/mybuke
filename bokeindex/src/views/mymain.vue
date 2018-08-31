@@ -2,7 +2,6 @@
   <div class="mymain">
       <MyHead></MyHead>
         <!-- 轮播图 -->
-        <Fade></Fade>
         <div class="main">
           <div class="view">
             <!-- 列表 -->
@@ -10,7 +9,7 @@
               <ul>
                 <li class="animated zoomIn hvr-float-shadow" v-if="lists" v-for="(item,index) in nowlists" :key="index">
                   <a class="post-img loading" href="javascript:;" @click=jump(item)>
-                    <img :src="item.thumb" alt="">
+                    <img :src="item.thumb" :alt="item.thumb">
                   </a>
                   <h3 class="title">
                     <a href="javascript:;" @click=jump(item)>
@@ -43,7 +42,7 @@
             <!-- 提示 -->
             <p class="ts">{{ts}}</p>
             <!--  -->
-            <Prompt title="确定" content="确定要删除吗？" @myclick='child'></Prompt>
+            <Prompt title="" content="确定要删除吗？" @myclick='child'></Prompt>
           </div>
         </div>
       <!-- <MyMask></MyMask> -->
@@ -80,11 +79,12 @@ export default {
     }
   },
   created(){
-      this.$axios.get("/api/",{"id":123})
+      this.$axios.get("/api/",)
         .then(res=>{
           (res.data).forEach(element => {
-              element.desc=element.content.slice(0,80)+'...';
-              element.time=this.$store.state.formatDate(element.time);
+              element.desc=element.content.slice(0,80)+'...';                                 //简介处理
+              element.time=this.$store.state.formatDate(element.time);                        //时间处理
+              element.thumb=element.thumb? element.thumb : require('../assets/img/1.jpg')     //导图处理
           });
           this.lists=res.data;
           this.page.oldlistsnum=this.lists.length;
@@ -103,16 +103,7 @@ export default {
     child(res){ 
       if(res){
        document.querySelector('.mymain .prompt').style.cssText="display:none";
-        let befordata = JSON.parse(localStorage.getItem('mycontent'));
-        befordata.splice(this.thisclose,1);
-        localStorage.setItem('mycontent',JSON.stringify(befordata))
-        this.lists=befordata;
-        this.nowlists=this.lists
-        this.ts="删除完成！"
-        document.querySelector('.ts').style.cssText="display:block";
-         setTimeout(function(){
-          document.querySelector('.ts').style.cssText="display:none";
-        },2000)
+       console.log('你点击了确定！')
       }
     },
     close(e){
@@ -120,7 +111,7 @@ export default {
       document.querySelector('.mymain .prompt').style.cssText="display:block";
     },
     jump(e){
-      this.$router.push({path:'/article',query:{id:e.id}})
+      this.$router.push({path:`/article/${e.id}`})
     },
       ievent(data){
         if(data==1){
@@ -153,9 +144,8 @@ export default {
 
 <style scoped lang="scss">
     .mymain{
-      width: 100%;
-      height: 100%;
-      overflow:hidden;
+      width: 1024px;
+      overflow: auto;
     }
     .mymain .prompt{
       display: none;
@@ -164,7 +154,6 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: auto;
   }
   .view{
     margin-top: 50px;
@@ -188,10 +177,8 @@ export default {
         li{
           width: 760px;
           height: 150px;
-          overflow: hidden;
           margin-bottom: 20px;
           padding: 20px;
-          overflow: hidden;
           background-color: rgba(0,0,0,0.8);
           border: 1px solid #eee;
           border-radius: 2px;

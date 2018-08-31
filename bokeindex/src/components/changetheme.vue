@@ -1,7 +1,7 @@
 <template>
   <div class="view">
-      <div class="changetheme" @click="changetheme" :class="changeblack==true?'changeblack':'changewhite'">
-          <i class="iconfont icon-zhuti_o"></i>
+      <div class="changetheme hvr-icon-buzz-out " @click="changetheme" :class="changeblack==true?'changeblack':'changewhite'">
+          <i class="hvr-icon iconfont icon-zhuti_o"></i>
       </div>
   </div>
 </template>

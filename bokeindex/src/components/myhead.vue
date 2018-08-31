@@ -1,4 +1,5 @@
 <template>
+<div class="g-container">
   <div class="myhead" :class="changeblack==true?'changeblack':'changewhite'">
       <div class="main">
         <div class="logo">我的博客-HelloWorld</div>
@@ -10,6 +11,7 @@
         </nav>
       </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -20,8 +22,8 @@ export default {
         active:0,
         nav:[
             {id:0,text:'首页',href:'/',icon:'iconfont icon-shouye'},
-            // {id:1,text:'编辑',href:'/edit',icon:'iconfont icon-bianjibiaoge'},
-            // {id:1,text:'归整',href:'/integration',icon:'iconfont icon-iconset0156'},
+            {id:1,text:'编辑',href:'/edit',icon:'iconfont icon-bianjibiaoge'},
+            {id:2,text:'归整',href:'/integration',icon:'iconfont icon-iconset0156'},
             // {id:2,text:'仓库',href:'/warehouse',icon:'iconfont icon-cangku_kucunxiangqing_o'},
             // {id:3,text:'采集',href:'/collection',icon:'iconfont icon-xinxicaiji'},
             // {id:4,text:'养蜂人',href:'/beekeepers',icon:'iconfont icon-qunzu_o'},
@@ -52,7 +54,7 @@ export default {
 <style scoped lang="scss">
 
     .myhead{
-        z-index: 10;
+        z-index: 100;
         position: fixed;
         top: 0;
         left: 0;

@@ -105,28 +105,15 @@ export default {
                 document.querySelector('.ts').style.cssText="display:none";
             },2000)
             return false;
+        }else if(content.length<=50){
+            this.ts="编辑失败！文字过少"
+            document.querySelector('.ts').style.cssText="display:block";
+            setTimeout(function(){
+                document.querySelector('.ts').style.cssText="display:none";
+            },2000)
+            return false;
         }else{
-            if(localStorage.getItem('mycontent')){
-                let befordata = JSON.parse(localStorage.getItem('mycontent'));
-                let newdata = {id:befordata.length,time:this.getNowFormatDate(),con:this.content}
-                befordata.push(newdata);
-                localStorage.setItem('mycontent',JSON.stringify(befordata))
-                this.ts="编辑完成！"
-                this.title='',
-                this.content='',
-                document.querySelector('.ts').style.cssText="display:block";
-                setTimeout(function(){
-                    document.querySelector('.ts').style.cssText="display:none";
-                },2000)
-                this.$router.push('/')
-            }else{
-                let mydata=[{id:0,time:this.getNowFormatDate(),con:this.content}];
-                localStorage.setItem('mycontent',JSON.stringify(mydata))
-                document.querySelector('.ts').style.cssText="display:block";
-                setTimeout(function(){
-                    document.querySelector('.ts').style.cssText="display:none";
-                },2000)
-            }
+            console.log('完成！')
         }
     }
   },

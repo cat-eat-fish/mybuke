@@ -12,15 +12,14 @@ var pool = mysql.createPool({
 
 /* GET home page. */
 router.get('/api/', function(req, res, next) {
-  // res.send('前台首页')
   pool.query('select  * from article', function(err, rows, fields) {
     if (err) throw err;
     res.send(rows)
   });
 });
 
-router.get('/api/article/', function(req, res, next) {
-  var id=req.query.id ? req.query.id : 1;
+router.get('/api/article/:id', function(req, res, next) {
+  var id=req.params.id ? req.params.id : 1;
   pool.query(`select  * from article where id=${id}`, function(err, rows, fields) {
     if (err) throw err;
     res.send(rows)

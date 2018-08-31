@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 年 08 月 31 日 11:42
+-- 生成日期: 2018 年 08 月 31 日 11:48
 -- 服务器版本: 5.5.47
 -- PHP 版本: 5.3.29
 
@@ -19,6 +19,24 @@ SET time_zone = "+00:00";
 --
 -- 数据库: `myboke`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `birthday` datetime NOT NULL,
+  `desc` char(255) DEFAULT NULL,
+  `thumb` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user` (`user`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

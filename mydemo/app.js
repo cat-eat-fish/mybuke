@@ -5,14 +5,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// var proxy = require('http-proxy-middleware');
+// var options = {
+//   target: 'http://res.42du.cn', // 目标服务器 host
+//   changeOrigin: true,               // 默认false，是否需要改变原始主机头为目标URL
+//   ws: true,                         // 是否代理websockets
+// };
+// var exampleProxy = proxy(options);
+// app.use('/cityapi', exampleProxy);
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 var history =  require('connect-history-api-fallback');
 app.use(history());
-// var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +32,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dist')));
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,10 +51,7 @@ app.use(function(err, req, res, next) {
 
 // module.exports = app;
 var server = app.listen(3000, function () {
- 
   var host = server.address().address
   var port = server.address().port
- 
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
- 
 })

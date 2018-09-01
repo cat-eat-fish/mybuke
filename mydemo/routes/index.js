@@ -17,7 +17,6 @@ router.get('/api/', function(req, res, next) {
     res.send(rows)
   });
 });
-
 router.get('/api/article/:id', function(req, res, next) {
   var id=req.params.id ? req.params.id : 1;
   pool.query(`select  * from article where id=${id}`, function(err, rows, fields) {
@@ -25,6 +24,28 @@ router.get('/api/article/:id', function(req, res, next) {
     res.send(rows)
   });
 });
+
+router.get('/api/province', function(req, res, next) {
+  pool.query('select  * from hat_province', function(err, rows, fields) {
+    if (err) throw err;
+    res.send(rows)
+  });
+});
+router.get('/api/city', function(req, res, next) {
+  var city=req.query.id;
+  pool.query(`select  * from hat_city where father=${city}`, function(err, rows, fields) {
+    if (err) throw err;
+    res.send(rows)
+  });
+});
+router.get('/api/area', function(req, res, next) {
+  var area=req.query.id;
+  pool.query(`select  * from hat_area where father=${area}`, function(err, rows, fields) {
+    if (err) throw err;
+    res.send(rows)
+  });
+});
+
 
 
 module.exports = router;

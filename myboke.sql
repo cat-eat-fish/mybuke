@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 年 09 月 01 日 14:20
+-- 生成日期: 2018 年 09 月 04 日 16:44
 -- 服务器版本: 5.5.47
 -- PHP 版本: 5.3.29
 
@@ -3646,6 +3646,33 @@ INSERT INTO `hat_province` (`id`, `provinceID`, `province`) VALUES
 (32, '710000', '台湾省'),
 (33, '810000', '香港特别行政区'),
 (34, '820000', '澳门特别行政区');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `userinfo`
+--
+
+CREATE TABLE IF NOT EXISTS `userinfo` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user` varchar(50) NOT NULL COMMENT '用户名',
+  `pass` varchar(50) NOT NULL COMMENT '密码',
+  `thumb` varchar(50) DEFAULT NULL COMMENT '头像',
+  `birthday` datetime DEFAULT NULL COMMENT '生日',
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `desc` varchar(500) DEFAULT NULL COMMENT '简介',
+  `tid` int(20) DEFAULT NULL COMMENT '关联的文章',
+  `cid` int(20) DEFAULT NULL COMMENT '我的评论',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user` (`user`)
+) ENGINE=MyISAM  DEFAULT CHARSET=gbk AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `userinfo`
+--
+
+INSERT INTO `userinfo` (`id`, `user`, `pass`, `thumb`, `birthday`, `ctime`, `desc`, `tid`, `cid`) VALUES
+(1, 'zhangsan', '123456', 'aaaaa', '2018-09-07 00:00:00', '2018-09-03 06:58:04', '大家好，很高兴能加入这里，我会为大家提供学习以及工作中可能遇到的问题，当然也希望大家能和我一起参与其中！', 1, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
